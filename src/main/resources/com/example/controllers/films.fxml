@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.FilmsController">
+   <children>
+      <ScrollPane layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="229.0">
+         <content>
+            <HBox prefHeight="53.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="53.0" prefWidth="117.0" text="Название фильма" />
+                  <Label prefHeight="53.0" prefWidth="77.0" text="Рейтинг" />
+                  <Label prefHeight="53.0" prefWidth="100.0" text="Цена билета" />
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="292.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+      <TextArea layoutX="14.0" layoutY="260.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="14.0" layoutY="231.0" text="Отзывы:" />
+      <Button layoutX="404.0" layoutY="403.0" mnemonicParsing="false" text="Купить" />
+      <Label layoutX="292.0" layoutY="231.0" text="Купить билет на фильм" />
+      <Label layoutX="292.0" layoutY="281.0" text="Фильм:" />
+      <Label layoutX="289.0" layoutY="325.0" text="Рейтинг:" />
+      <Label layoutX="282.0" layoutY="365.0" text="Стоимость:" />
+      <TextField layoutX="356.0" layoutY="277.0" />
+      <TextField layoutX="356.0" layoutY="321.0" />
+      <TextField layoutX="356.0" layoutY="361.0" />
+      <Label layoutX="14.0" layoutY="483.0" text="Оставить свой отзыв о фильме:" />
+      <TextArea layoutX="14.0" layoutY="507.0" prefHeight="89.0" prefWidth="571.0" />
+      <Button layoutX="255.0" layoutY="604.0" mnemonicParsing="false" text="Подтвердить:" />
+   </children>
+</AnchorPane>

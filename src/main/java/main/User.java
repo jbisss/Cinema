@@ -19,7 +19,7 @@ public class User {
         users.add(this);
     }
 
-    public User findUser(String login, String password){
+    public static User findUser(String login, String password){
         for (User user : users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return user;

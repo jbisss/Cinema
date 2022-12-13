@@ -6,24 +6,24 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="340.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
+<AnchorPane fx:id="back" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
    <children>
-      <Label layoutX="159.0" layoutY="16.0" text="Вход:" />
-      <TextField fx:id="loginEnterField" layoutX="97.0" layoutY="40.0" prefHeight="10.0" prefWidth="149.0" />
-      <Button fx:id="enterButton" onAction="#passwordEnterButtonClick" layoutX="131.0" layoutY="129.0" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Войти" />
-      <PasswordField fx:id="passwordEnterField" layoutX="99.0" layoutY="90.0"/>
-      <Label layoutX="60.0" layoutY="44.0" text="Логин:" />
-      <Label layoutX="53.0" layoutY="94.0" text="Пароль:" />
-      <Button fx:id="registrationButton" onAction="#registrationButtonClick" layoutX="131.0" layoutY="162.0" mnemonicParsing="false" text="Регистрация" />
-      <TextField fx:id="loginRegisterField" layoutX="102.0" layoutY="307.0" prefHeight="10.0" prefWidth="149.0" />
-      <PasswordField fx:id="passwordRegisterField" layoutX="102.0" layoutY="345.0" />
-      <Label layoutX="65.0" layoutY="311.0" text="Логин:" />
-      <Label layoutX="58.0" layoutY="349.0" text="Пароль:" />
-      <Label layoutX="136.0" layoutY="229.0" text="Регистрация:" />
-      <Button fx:id="approveButton" layoutX="135.0" layoutY="379.0" mnemonicParsing="false" text="Подтвердить" />
-      <Label fx:id="registerSuccessLabel" layoutX="138.0" layoutY="414.0" text="Успех/неудача:" />
-      <TextField fx:id="nameRegisterField" layoutX="102.0" layoutY="266.0" prefHeight="10.0" prefWidth="149.0" />
-      <Label layoutX="76.0" layoutY="271.0" text="Имя:" />
-      <Label fx:id="enterSuccessLabel" layoutX="130.0" layoutY="195.0" text="Успех/неудача:" />
+      <Label layoutX="190.0" layoutY="12.0" text="Вход:" />
+      <TextField fx:id="loginEnterField" layoutX="128.0" layoutY="36.0" prefHeight="10.0" prefWidth="149.0" />
+      <Button fx:id="enterButton" layoutX="162.0" layoutY="125.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#passwordEnterButtonClick" prefHeight="25.0" prefWidth="85.0" text="Войти" />
+      <PasswordField fx:id="passwordEnterField" layoutX="130.0" layoutY="86.0" />
+      <Label layoutX="91.0" layoutY="40.0" text="Логин:" />
+      <Label layoutX="84.0" layoutY="90.0" text="Пароль:" />
+      <Button fx:id="registrationButton" layoutX="162.0" layoutY="158.0" mnemonicParsing="false" onAction="#registrationButtonClick" text="Регистрация" />
+      <TextField fx:id="loginRegisterField" layoutX="133.0" layoutY="303.0" prefHeight="10.0" prefWidth="149.0" />
+      <PasswordField fx:id="passwordRegisterField" layoutX="133.0" layoutY="341.0" />
+      <Label layoutX="96.0" layoutY="307.0" text="Логин:" />
+      <Label layoutX="89.0" layoutY="345.0" text="Пароль:" />
+      <Label layoutX="167.0" layoutY="225.0" text="Регистрация:" />
+      <Button fx:id="approveButton" layoutX="166.0" layoutY="375.0" mnemonicParsing="false" onAction="#approveButtonClick" text="Подтвердить" />
+      <Label fx:id="registerSuccessLabel" layoutX="1.0" layoutY="408.0" prefHeight="17.0" prefWidth="475.0" />
+      <TextField fx:id="nameRegisterField" layoutX="133.0" layoutY="262.0" prefHeight="10.0" prefWidth="149.0" />
+      <Label layoutX="107.0" layoutY="267.0" text="Имя:" />
+      <Label fx:id="enterSuccessLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="34.0" layoutY="189.0" />
    </children>
 </AnchorPane>

@@ -3,35 +3,25 @@ package main;
 import java.util.ArrayList;
 
 public class User {
-    public static final ArrayList<User> users = new ArrayList<>();
     public final Card card;
     private final String name;
     private String login;
     private String password;
     private String feedback;
 
-    public User(String name, String login, String password){
+    public User(String name, String login, String password, int money){
         this.name = name;
         this.login = login;
         this.password = password;
-        this.card = new Card();
+        this.card = new Card(money);
         this.feedback = "";
-        users.add(this);
+        CurrentObjects.users.add(this);
     }
 
-    public static User findUser(String login, String password){
-        for (User user : users) {
-            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    private String getLogin(){
+    String getLogin(){
         return this.login;
     }
-    private String getPassword(){
+    String getPassword(){
         return this.password;
     }
     public String getName(){
@@ -42,8 +32,12 @@ public class User {
         this.login = login;
         this.password = password;
     }
-
     public void setFeedback(String feedback){
         this.feedback = feedback;
+    }
+
+    @Override
+    public String toString(){
+        return this.name + "@" + this.login;
     }
 }

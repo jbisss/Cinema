@@ -17,6 +17,8 @@ public class CurrentObjects {
     public static TextField filmName;
     public static TextField filmRating;
     public static TextField filmCost;
+    public static ComboBox<String> hall_1;
+    public static ComboBox<String> hall_2;
     public static ComboBox<String> timeList;
     public static ImageView image;
     public static TextArea reviewText;
@@ -50,8 +52,6 @@ public class CurrentObjects {
         new Film(new Image("X-men.jpg"), "X-men", randRating.nextDouble(diffD) + minD,
                 randCost.nextInt(diffI + 1) + minI).
                 addReview(user_1, "Ребенок в восторге, особенно ребенок внутри меня!");
-
-
     }
     public static User findUser(String login, String password){
         for (User user : CurrentObjects.users) {

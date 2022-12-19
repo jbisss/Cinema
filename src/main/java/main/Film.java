@@ -12,6 +12,8 @@ import java.util.Random;
 
 public class Film {
     public ArrayList<String> schedule = new ArrayList<>();
+    public ArrayList<String> cinemaHall_1 = new ArrayList<>();
+    public ArrayList<String> cinemaHall_2 = new ArrayList<>();
     public ArrayList<Review> reviews = new ArrayList<>();
     private final Image image;
     private final String name;
@@ -33,15 +35,18 @@ public class Film {
         this.labelRating.setAlignment(Pos.CENTER);
         this.labelCost.setPrefWidth(52);
         this.labelCost.setAlignment(Pos.CENTER);
-
         this.button.setOnAction(actionEvent -> {
             CurrentObjects.filmName.setText(name);
             CurrentObjects.filmCost.setText(Integer.toString(ticketCost));
             CurrentObjects.filmRating.setText(String.format("%.1f", rating));
             CurrentObjects.image.setImage(image);
             ObservableList<String> times = FXCollections.observableArrayList(schedule);
+            ObservableList<String> seats_1 = FXCollections.observableArrayList(cinemaHall_1);
+            ObservableList<String> seats_2 = FXCollections.observableArrayList(cinemaHall_2);
             CurrentObjects.timeList.setItems(times);
             CurrentObjects.reviewText.setText(toString());
+            CurrentObjects.hall_1.setItems(seats_1);
+            CurrentObjects.hall_2.setItems(seats_2);
             CurrentObjects.currentFilm = this;
         });
 
@@ -65,6 +70,9 @@ public class Film {
             String result = hoursString + ":" + minutesString;
             if (!this.schedule.contains(result)){
                 this.schedule.add(result);
+                Random rand = new Random();
+                this.cinemaHall_1.add(Integer.toString(1));
+                this.cinemaHall_2.add(Integer.toString(rand.nextInt(30) + 2));
             }
         }
         CurrentObjects.films.add(this);

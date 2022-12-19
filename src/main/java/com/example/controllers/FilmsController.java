@@ -40,16 +40,36 @@ public class FilmsController {
     public Label newTimeText;
     public TextField newTimeField;
     public Button changesButton;
+    public Label labelError;
+    public Button buttonToTickets;
+    public Label labelSeats_1;
+    public Label labelSeats_2;
+    public ComboBox<String> comboHall_1;
+    public ComboBox<String> comboHall_2;
+    public TextField hallNumber;
+    public Label labelChosing;
+
+    public void buttonToTicketsClick(){
+        closeWindow(buttonToTickets, "tickets.fxml");
+    }
 
     public void initialize(){
+        CurrentObjects.hall_1 = comboHall_1;
+        CurrentObjects.hall_2 = comboHall_2;
         if (!(CurrentObjects.currentUser instanceof Admin)) {
             oldTimeText.setVisible(false);
             oldTimeField.setVisible(false);
             newTimeText.setVisible(false);
             newTimeField.setVisible(false);
             changesButton.setVisible(false);
-            reportField.setPrefHeight(337);
-            reportField.setLayoutY(228);
+        } else {
+            buyButton.setDisable(true);
+            labelSeats_1.setVisible(false);
+            labelSeats_2.setVisible(false);
+            comboHall_1.setVisible(false);
+            comboHall_2.setVisible(false);
+            hallNumber.setVisible(false);
+            labelChosing.setVisible(false);
         }
         BackgroundImage myBI= new BackgroundImage(new Image("Back_2.jpg",2560,1440,false,true),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
@@ -83,8 +103,9 @@ public class FilmsController {
                         } else {
                             textToPay.setText("");
                         }
+                        labelError.setText("");
                     } catch (Exception exception) {
-                        System.out.println("Invalid input!");
+                        labelError.setText("Invalid input!");
                         textToPay.setText("");
                     }
                 });
@@ -96,13 +117,15 @@ public class FilmsController {
             char[] newTimeChar = newTime.toCharArray();
             boolean flag = true;
             if(newTimeChar[2] == ':'){
-                for (int i = 0; i < newTimeChar.length / 2; i++){
-                    int x_1 = newTimeChar[i] - 48;
-                    int x_2 = newTimeChar[newTimeChar.length - 1 - i] - 48;
-                    if (x_1 > 9 && x_2 > 9) {
+                    int x_1 = newTimeChar[0] - 48;
+                    x_1*=10;
+                    int x_11 = newTimeChar[1] - 48;
+                    int x_2 = newTimeChar[3] - 48;
+                    x_2*=10;
+                    int x_22 = newTimeChar[4] - 48;
+                    if (x_1 + x_11 > 23 || x_2 + x_22 > 59) {
                         reportField.setText("Неверный формат\nнового времени!");
                         flag = false;
-                    }
                 }
             }
             if (flag) {
@@ -110,30 +133,86 @@ public class FilmsController {
                     CurrentObjects.currentFilm.changeTimeOnSchedule(oldTime, newTime);
                     ObservableList<String> times = FXCollections.observableArrayList(CurrentObjects.currentFilm.schedule);
                     timesComboBox.setItems(times);
+                    reportField.setText("Установлено\nновое время!");
                 } else {
                     reportField.setText("Такое время уже есть!");
                 }
             }
+        } else {
+            reportField.setText("Неверный ввод времени!");
         }
     }
     private int countReports = 1;
     public void buyButtonClick(){
+        labelError.setText("");
         try {
             int moneyToPay = Integer.parseInt(textToPay.getText());
             if (moneyToPay <= CurrentObjects.currentUser.card.getMoney() && timesComboBox.getValue() != null) {
-                CurrentObjects.currentUser.card.withdrawMoney(moneyToPay);
-                reportField.setText(reportField.getText() + "#" + countReports + "\nВы купили "
-                        + ticketsCount.getText() + " билета\nна фильм: "
-                        + filmName.getText() + "\nПо цене: " + textToPay.getText() + "\nВремя сеанса: "
-                        + timesComboBox.getValue() + "\n");
+                int hallNumberIndex = 0;
+                try{
+                    if (Integer.parseInt(hallNumber.getText()) > 2 || Integer.parseInt(hallNumber.getText()) < 1){
+                        labelError.setText("Invalid number!");
+                    } else {
+                        hallNumberIndex = Integer.parseInt(hallNumber.getText());
+                    }
+                } catch (Exception exception){
+                    labelError.setText("Invalid input!");
+                }
+                if (hallNumberIndex!=0){
+                    int index = CurrentObjects.currentFilm.schedule.indexOf(timesComboBox.getValue());
+                    if (hallNumberIndex == 1){
+                        if (Integer.parseInt(CurrentObjects.currentFilm.cinemaHall_1.get(index))
+                                >= Integer.parseInt(ticketsCount.getText())) {
+                            String result = "#" + countReports + "\nВы купили "
+                                    + ticketsCount.getText() + " билета\nна фильм: "
+                                    + filmName.getText() + "\nПо цене: " + textToPay.getText() + "\nВремя сеанса: "
+                                    + timesComboBox.getValue() + "\n";
+                            CurrentObjects.currentUser.card.withdrawMoney(moneyToPay);
+                            CurrentObjects.currentUser.setTickets(result);
+                            reportField.setText(reportField.getText() + result);
+                            int o = Integer.parseInt(String.valueOf(Integer.parseInt(CurrentObjects.currentFilm.cinemaHall_1.get(index))));
+                            int o_1 = Integer.parseInt(ticketsCount.getText());
+                            int res = o - o_1;
+                            CurrentObjects.currentFilm.cinemaHall_1.remove(index);
+                            CurrentObjects.currentFilm.cinemaHall_1.add(index, Integer.toString(res));
+                            ObservableList<String> seats_1 = FXCollections.observableArrayList(CurrentObjects.currentFilm.cinemaHall_1);
+                            CurrentObjects.hall_1.setItems(seats_1);
+                        } else {
+                            labelError.setText("No seats!");
+                        }
+                    }
+                    if (hallNumberIndex == 2) {
+                        if (Integer.parseInt(CurrentObjects.currentFilm.cinemaHall_2.get(index))
+                                > Integer.parseInt(ticketsCount.getText())) {
+                            String result = "#" + countReports + "\nВы купили "
+                                    + ticketsCount.getText() + " билета\nна фильм: "
+                                    + filmName.getText() + "\nПо цене: " + textToPay.getText() + "\nВремя сеанса: "
+                                    + timesComboBox.getValue() + "\n";
+                            CurrentObjects.currentUser.card.withdrawMoney(moneyToPay);
+                            CurrentObjects.currentUser.setTickets(result);
+                            reportField.setText(reportField.getText() + result);
+                            CurrentObjects.currentFilm.cinemaHall_2.remove(index);
+                            CurrentObjects.currentFilm.cinemaHall_2.add(index, Integer.toString(
+                                    Integer.parseInt(String.valueOf(Integer.parseInt(CurrentObjects.
+                                            currentFilm.cinemaHall_2.get(index)) - Integer.parseInt(ticketsCount.getText())))));
+                            System.out.println( CurrentObjects.currentFilm.cinemaHall_2);
+                            ObservableList<String> seats_2 = FXCollections.observableArrayList( CurrentObjects.currentFilm.cinemaHall_2);
+                            CurrentObjects.hall_2.setItems(seats_2);
+                        }
+                    }
+                }
+
             } else if (moneyToPay > CurrentObjects.currentUser.card.getMoney()){
                 reportField.setText(reportField.getText() + "#" + countReports + "\nНе хватает денег на карте!\n");
             } else if (timesComboBox.getValue() == null) {
                 reportField.setText(reportField.getText() + "#" + countReports +  "\nВыберите время сеанса!\n");
             }
+            textToPay.setText("");
+            ticketsCount.setText("");
+            hallNumber.setText("");
             countReports++;
         } catch (Exception exception){
-            System.out.println("Invalid input!");
+            labelError.setText("Invalid input!");
         }
     }
     public void approveButtonClick(){
@@ -144,11 +223,11 @@ public class FilmsController {
         }
     }
     public void backButtonClick(){
-        closeWindow(backButton);
+        closeWindow(backButton, "register.fxml");
     }
-    private void closeWindow(Button button){
+    private void closeWindow(Button button, String scene){
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("register.fxml"));
+        loader.setLocation(getClass().getResource(scene));
         LoaderFxml(loader);
         Stage stagePrev = (Stage) button.getScene().getWindow();
         stagePrev.hide();

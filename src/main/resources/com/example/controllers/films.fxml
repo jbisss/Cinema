@@ -52,10 +52,18 @@
       <TextField fx:id="textToPay" editable="false" layoutX="437.0" layoutY="197.0" prefHeight="25.0" prefWidth="86.0" promptText="инфо" />
       <TextArea fx:id="reportField" layoutX="437.0" layoutY="367.0" prefHeight="200.0" prefWidth="150.0" />
       <Button fx:id="backButton" layoutX="536.0" layoutY="572.0" mnemonicParsing="false" onAction="#backButtonClick" text="Назад" />
-      <Label fx:id="oldTimeText" layoutX="437.0" layoutY="230.0" text="Старое время:" />
-      <TextField fx:id="oldTimeField" layoutX="437.0" layoutY="254.0" promptText="ввод" />
-      <Label fx:id="newTimeText" layoutX="437.0" layoutY="282.0" text="Новое время:" />
-      <TextField fx:id="newTimeField" layoutX="437.0" layoutY="306.0" promptText="ввод" />
-      <Button fx:id="changesButton" onAction="#changeTime" layoutX="438.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Принять изменения" />
+      <Label fx:id="oldTimeText" layoutX="439.0" layoutY="230.0" text="Старое время:" />
+      <TextField fx:id="oldTimeField" layoutX="439.0" layoutY="254.0" promptText="ввод" />
+      <Label fx:id="newTimeText" layoutX="439.0" layoutY="282.0" text="Новое время:" />
+      <TextField fx:id="newTimeField" layoutX="439.0" layoutY="306.0" promptText="ввод" />
+      <Button fx:id="changesButton" layoutX="440.0" layoutY="336.0" mnemonicParsing="false" onAction="#changeTime" prefHeight="25.0" prefWidth="149.0" text="Принять изменения" />
+      <Label fx:id="labelError" layoutX="350.0" layoutY="155.0" />
+      <Button fx:id="buttonToTickets" layoutX="438.0" layoutY="572.0" mnemonicParsing="false" onAction="#buttonToTicketsClick" prefHeight="25.0" prefWidth="88.0" text="К билетам" />
+      <Label fx:id="labelSeats_1" layoutX="437.0" layoutY="239.0" text="Мест в зале 1:" />
+      <Label fx:id="labelSeats_2" layoutX="437.0" layoutY="265.0" text="Мест в зале 2:" />
+      <ComboBox fx:id="comboHall_1" layoutX="521.0" layoutY="235.0" prefHeight="25.0" prefWidth="69.0" />
+      <ComboBox fx:id="comboHall_2" layoutX="521.0" layoutY="261.0" prefHeight="25.0" prefWidth="69.0" />
+      <TextField fx:id="hallNumber" layoutX="438.0" layoutY="330.0" />
+      <Label fx:id="labelChosing" layoutX="438.0" layoutY="306.0" text="Выберите номер зала:" />
    </children>
 </AnchorPane>

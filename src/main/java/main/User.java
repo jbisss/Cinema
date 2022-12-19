@@ -5,35 +5,35 @@ import java.util.ArrayList;
 public class User {
     public final Card card;
     private final String name;
-    private String login;
-    private String password;
-    private String feedback;
+    private final String login;
+    private final String password;
+    private String tickets;
 
     public User(String name, String login, String password, int money){
         this.name = name;
         this.login = login;
         this.password = password;
         this.card = new Card(money);
-        this.feedback = "";
+        this.tickets="";
         CurrentObjects.users.add(this);
     }
 
-    String getLogin(){
+    public String getLogin(){
         return this.login;
     }
-    String getPassword(){
+    public String getPassword(){
         return this.password;
     }
     public String getName(){
         return this.name;
     }
 
-    private void setLoginPassword(String login, String password){
-        this.login = login;
-        this.password = password;
+    public String getTickets() {
+        return tickets;
     }
-    public void setFeedback(String feedback){
-        this.feedback = feedback;
+
+    public void setTickets(String tickets) {
+        this.tickets += tickets + "\n";
     }
 
     @Override

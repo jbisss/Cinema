@@ -1,4 +1,4 @@
-module com.example.cinema {
+module com.example{
     requires javafx.controls;
     requires javafx.fxml;
 

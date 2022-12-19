@@ -71,7 +71,7 @@ public class Film {
             if (!this.schedule.contains(result)){
                 this.schedule.add(result);
                 Random rand = new Random();
-                this.cinemaHall_1.add(Integer.toString(1));
+                this.cinemaHall_1.add(Integer.toString(rand.nextInt(30) + 2));
                 this.cinemaHall_2.add(Integer.toString(rand.nextInt(30) + 2));
             }
         }

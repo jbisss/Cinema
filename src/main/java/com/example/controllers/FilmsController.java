@@ -166,7 +166,7 @@ public class FilmsController {
                     int index = CurrentObjects.currentFilm.schedule.indexOf(timesComboBox.getValue());
                     if (hallNumberIndex == 1){
                         if (Integer.parseInt(CurrentObjects.currentFilm.cinemaHall_1.get(index))
-                                >= Integer.parseInt(ticketsCount.getText())) {
+                                >= Integer.parseInt(ticketsCount.getText()) && comboHall_1.getValue()!=null) {
                             String result = "#" + countReports + "\nВы купили "
                                     + ticketsCount.getText() + " билета\nна фильм: "
                                     + filmName.getText() + "\nПо цене: " + textToPay.getText() + "\nВремя сеанса: "
@@ -178,16 +178,17 @@ public class FilmsController {
                             int o_1 = Integer.parseInt(ticketsCount.getText());
                             int res = o - o_1;
                             CurrentObjects.currentFilm.cinemaHall_1.remove(index);
-                            CurrentObjects.currentFilm.cinemaHall_1.add(index, Integer.toString(res));
+                            // CurrentObjects.currentFilm.cinemaHall_1.add(index, Integer.toString(res));
                             ObservableList<String> seats_1 = FXCollections.observableArrayList(CurrentObjects.currentFilm.cinemaHall_1);
                             CurrentObjects.hall_1.setItems(seats_1);
+                            comboHall_1.setPromptText("");
                         } else {
                             labelError.setText("No seats!");
                         }
                     }
                     if (hallNumberIndex == 2) {
                         if (Integer.parseInt(CurrentObjects.currentFilm.cinemaHall_2.get(index))
-                                > Integer.parseInt(ticketsCount.getText())) {
+                                > Integer.parseInt(ticketsCount.getText()) && comboHall_1.getValue()!=null) {
                             String result = "#" + countReports + "\nВы купили "
                                     + ticketsCount.getText() + " билета\nна фильм: "
                                     + filmName.getText() + "\nПо цене: " + textToPay.getText() + "\nВремя сеанса: "
@@ -196,12 +197,13 @@ public class FilmsController {
                             CurrentObjects.currentUser.setTickets(result);
                             reportField.setText(reportField.getText() + result);
                             CurrentObjects.currentFilm.cinemaHall_2.remove(index);
-                            CurrentObjects.currentFilm.cinemaHall_2.add(index, Integer.toString(
+                            /* CurrentObjects.currentFilm.cinemaHall_2.add(index, Integer.toString(
                                     Integer.parseInt(String.valueOf(Integer.parseInt(CurrentObjects.
-                                            currentFilm.cinemaHall_2.get(index)) - Integer.parseInt(ticketsCount.getText())))));
+                                            currentFilm.cinemaHall_2.get(index)) - Integer.parseInt(ticketsCount.getText())))));*/
                             System.out.println( CurrentObjects.currentFilm.cinemaHall_2);
                             ObservableList<String> seats_2 = FXCollections.observableArrayList( CurrentObjects.currentFilm.cinemaHall_2);
                             CurrentObjects.hall_2.setItems(seats_2);
+                            comboHall_2.setPromptText("");
                         }
                     }
                 }

@@ -62,6 +62,9 @@ public class FilmsController {
             newTimeText.setVisible(false);
             newTimeField.setVisible(false);
             changesButton.setVisible(false);
+            if (!CurrentObjects.flagHall){
+                comboHall_2.setDisable(true);
+            }
         } else {
             buyButton.setDisable(true);
             labelSeats_1.setVisible(false);
@@ -113,6 +116,7 @@ public class FilmsController {
     public void changeTime(){
         String oldTime = oldTimeField.getText();
         String newTime = newTimeField.getText();
+        CurrentObjects.flagHall = false;
         if(timesComboBox.getItems().contains(oldTime) && newTimeField.getText().length() == 5) {
             char[] newTimeChar = newTime.toCharArray();
             boolean flag = true;

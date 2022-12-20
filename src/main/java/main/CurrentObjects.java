@@ -22,6 +22,7 @@ public class CurrentObjects {
     public static ComboBox<String> timeList;
     public static ImageView image;
     public static TextArea reviewText;
+    public static boolean flagHall = true;
     static {
         User user_1 = new User("Mark","mark_best","1234", 1000);
         User user_2 = new User("Tony", "tiny_tony", "4321", 2000);
